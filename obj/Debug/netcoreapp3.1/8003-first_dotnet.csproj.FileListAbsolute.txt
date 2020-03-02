@@ -1,0 +1,11 @@
+C:\Users\beibe\Music\8003-first_dotnet\bin\Debug\netcoreapp3.1\8003-first_dotnet.exe
+C:\Users\beibe\Music\8003-first_dotnet\bin\Debug\netcoreapp3.1\8003-first_dotnet.deps.json
+C:\Users\beibe\Music\8003-first_dotnet\bin\Debug\netcoreapp3.1\8003-first_dotnet.runtimeconfig.json
+C:\Users\beibe\Music\8003-first_dotnet\bin\Debug\netcoreapp3.1\8003-first_dotnet.runtimeconfig.dev.json
+C:\Users\beibe\Music\8003-first_dotnet\bin\Debug\netcoreapp3.1\8003-first_dotnet.dll
+C:\Users\beibe\Music\8003-first_dotnet\bin\Debug\netcoreapp3.1\8003-first_dotnet.pdb
+C:\Users\beibe\Music\8003-first_dotnet\obj\Debug\netcoreapp3.1\8003-first_dotnet.csprojAssemblyReference.cache
+C:\Users\beibe\Music\8003-first_dotnet\obj\Debug\netcoreapp3.1\8003-first_dotnet.AssemblyInfoInputs.cache
+C:\Users\beibe\Music\8003-first_dotnet\obj\Debug\netcoreapp3.1\8003-first_dotnet.AssemblyInfo.cs
+C:\Users\beibe\Music\8003-first_dotnet\obj\Debug\netcoreapp3.1\8003-first_dotnet.dll
+C:\Users\beibe\Music\8003-first_dotnet\obj\Debug\netcoreapp3.1\8003-first_dotnet.pdb

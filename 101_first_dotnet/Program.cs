@@ -8,6 +8,7 @@ namespace _8003_first_dotnet
         {
             var c1 = new MyClass();
             Console.WriteLine($"Hello World! {c1.ReturnMessage()}");
+            //Console.WriteLine("Hello World!");
         }
     }
 }

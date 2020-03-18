@@ -3,13 +3,26 @@
 
 #include <iostream>
 
-int main()
-{
-    std::cout << "Hello World!\n";
+using namespace System;
 
+ref class CMyclass : public csharpf
+{
+public :
+    void test()
+    {
+        printf("hello C\r\n");
+        ffunc();
+    }
+};
+
+int main(array<System::String ^> ^args)
+{
+    Console::WriteLine(L"Hello World");
     csharpf^ o = gcnew csharpf();
     o->ffunc();
-
+    CMyclass^ o2 = gcnew CMyclass();
+    o2->test();
+    return 0;
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单

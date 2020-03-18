@@ -1,0 +1,2 @@
+C:\Users\beibe\Music\8003-dotnet_class\104-CLR\104-CLR\Debug\104-CLR.vcxprojAssemblyReference.cache
+C:\Users\beibe\Music\8003-dotnet_class\104-CLR\104-CLR\Debug\104-CLR.vcxproj.CopyComplete

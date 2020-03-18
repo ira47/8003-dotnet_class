@@ -1,0 +1,4 @@
+﻿  104-CLR.cpp
+  104-CLR.obj :托管的代码存在时 /DEBUG:FASTLINK 不受支持；正在重新启动与 /DEBUG:FULL 的链接
+  104-CLR.obj : 遇到了 MSIL 模块；对 MSIL 禁用了增量链接；正在执行完全链接
+  104-CLR.vcxproj -> C:\Users\beibe\Music\8003-dotnet_class\104-CLR\Debug\104-CLR.exe

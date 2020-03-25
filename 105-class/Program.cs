@@ -38,6 +38,7 @@ namespace _105_class
                 _public = value;
             }
         }
+        public Int32 SomeProp2 { get; set; }
     }
     class Program
     {
@@ -47,6 +48,9 @@ namespace _105_class
             SomeType o = new SomeType();
             o.SomeProp = 2020;
             Console.WriteLine("SomeProp:{0}", o._public);
+
+            o.SomeProp2 = 2021;
+            Console.WriteLine("SomeProp2:{0}", o.SomeProp2);
         }
     }
 }

@@ -4,8 +4,7 @@ namespace _105_class
 {
     class SomeType
     {
-        class SomeNestedType
-        { }
+        class SomeNestedType { }
 
         const Int32 _const = -1;
         readonly Int32 _read_only = 2;
@@ -15,7 +14,6 @@ namespace _105_class
         static SomeType()
         {
             Console.WriteLine("Hello SomeType!");
-
         }
         // 实例构造器
         public SomeType()
@@ -27,6 +25,7 @@ namespace _105_class
             Console.WriteLine("Hello New With Value Sometype!");
             _public = v;
         }
+        // 属性构造器
         public Int32 SomeProp
         {
             get
@@ -39,6 +38,21 @@ namespace _105_class
             }
         }
         public Int32 SomeProp2 { get; set; }
+        // 索引器属性
+        public Int32 this[String key]
+        {
+            get
+            {
+                if (key == "aaa")
+                    return _public;
+                return 0;
+            }
+            set
+            {
+                if (key == "aaa")
+                    _public = value;
+            }
+        }
     }
     class Program
     {
@@ -51,6 +65,9 @@ namespace _105_class
 
             o.SomeProp2 = 2021;
             Console.WriteLine("SomeProp2:{0}", o.SomeProp2);
+
+            o["aaa"] = 2022;
+            Console.WriteLine("aaa:{0}", o._public);
         }
     }
 }

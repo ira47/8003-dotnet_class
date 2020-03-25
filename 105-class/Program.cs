@@ -53,9 +53,24 @@ namespace _105_class
                     _public = value;
             }
         }
+        // 事件者属性
+        public event EventHandler SomeEvent;
+        public void TriggerEvent()
+        {
+            if (SomeEvent != null)
+            {
+                SomeEvent(this, null);
+            }
+        }
     }
     class Program
     {
+        static void MyEventHandler(object sender, EventArgs args)
+        {
+            SomeType o = (SomeType)sender;
+            o["aaa"] = 2022;
+            Console.WriteLine("aaa:{0}", o._public);
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
@@ -66,8 +81,9 @@ namespace _105_class
             o.SomeProp2 = 2021;
             Console.WriteLine("SomeProp2:{0}", o.SomeProp2);
 
-            o["aaa"] = 2022;
-            Console.WriteLine("aaa:{0}", o._public);
+            o.SomeEvent += MyEventHandler;
+            o.TriggerEvent();
+
         }
     }
 }

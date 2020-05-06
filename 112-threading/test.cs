@@ -23,6 +23,7 @@ class Program
 			counter++;
 			Monitor.Exit(synobject);
 		}
+		Console.WriteLine("In Thread {0}",counter);
 	}
 
 	static void Main()

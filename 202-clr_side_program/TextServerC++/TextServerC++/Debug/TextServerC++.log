@@ -1,0 +1,6 @@
+﻿  fileSplitter.cpp
+C:\Users\beibe\8003-dotnet_class\202-clr_side_program\TextServerC++\TextServerC++\fileSplitter.cpp(20,1): warning C4273: “mySum”: dll 链接不一致
+C:\Users\beibe\8003-dotnet_class\202-clr_side_program\TextServerC++\TextServerC++\fileSplitter.h(9,33): message : 参见“mySum”的前一个定义
+C:\Users\beibe\8003-dotnet_class\202-clr_side_program\TextServerC++\TextServerC++\fileSplitter.cpp(66,1): warning C4273: “divide”: dll 链接不一致
+C:\Users\beibe\8003-dotnet_class\202-clr_side_program\TextServerC++\TextServerC++\fileSplitter.h(11,34): message : 参见“divide”的前一个定义
+  TextServerC++.vcxproj -> C:\Users\beibe\8003-dotnet_class\202-clr_side_program\TextServerC++\Debug\TextServerC++.dll

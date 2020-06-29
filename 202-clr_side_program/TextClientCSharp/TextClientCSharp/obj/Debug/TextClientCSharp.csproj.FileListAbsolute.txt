@@ -1,0 +1,7 @@
+C:\Users\beibe\8003-dotnet_class\202-clr_side_program\TextClientCSharp\TextClientCSharp\bin\Debug\TextClientCSharp.exe.config
+C:\Users\beibe\8003-dotnet_class\202-clr_side_program\TextClientCSharp\TextClientCSharp\bin\Debug\TextClientCSharp.exe
+C:\Users\beibe\8003-dotnet_class\202-clr_side_program\TextClientCSharp\TextClientCSharp\bin\Debug\TextClientCSharp.pdb
+C:\Users\beibe\8003-dotnet_class\202-clr_side_program\TextClientCSharp\TextClientCSharp\obj\Debug\TextClientCSharp.csprojAssemblyReference.cache
+C:\Users\beibe\8003-dotnet_class\202-clr_side_program\TextClientCSharp\TextClientCSharp\obj\Debug\TextClientCSharp.csproj.CoreCompileInputs.cache
+C:\Users\beibe\8003-dotnet_class\202-clr_side_program\TextClientCSharp\TextClientCSharp\obj\Debug\TextClientCSharp.exe
+C:\Users\beibe\8003-dotnet_class\202-clr_side_program\TextClientCSharp\TextClientCSharp\obj\Debug\TextClientCSharp.pdb

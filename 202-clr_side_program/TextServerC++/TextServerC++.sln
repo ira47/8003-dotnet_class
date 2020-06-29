@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TextServerC++", "TextServerC++\TextServerC++.vcxproj", "{F8B0F3C1-94DA-41CB-AB03-B6A8E93791A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8B0F3C1-94DA-41CB-AB03-B6A8E93791A6}.Debug|x64.ActiveCfg = Debug|x64
+		{F8B0F3C1-94DA-41CB-AB03-B6A8E93791A6}.Debug|x64.Build.0 = Debug|x64
+		{F8B0F3C1-94DA-41CB-AB03-B6A8E93791A6}.Debug|x86.ActiveCfg = Debug|Win32
+		{F8B0F3C1-94DA-41CB-AB03-B6A8E93791A6}.Debug|x86.Build.0 = Debug|Win32
+		{F8B0F3C1-94DA-41CB-AB03-B6A8E93791A6}.Release|x64.ActiveCfg = Release|x64
+		{F8B0F3C1-94DA-41CB-AB03-B6A8E93791A6}.Release|x64.Build.0 = Release|x64
+		{F8B0F3C1-94DA-41CB-AB03-B6A8E93791A6}.Release|x86.ActiveCfg = Release|Win32
+		{F8B0F3C1-94DA-41CB-AB03-B6A8E93791A6}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09CA5808-136E-41E5-BB11-5FA0414CA280}
+	EndGlobalSection
+EndGlobal

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using System.Diagnostics.Contracts;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NotesLibrary.Models
 {
@@ -17,13 +20,24 @@ namespace NotesLibrary.Models
         public string Description { get; set; }
     }
 
+    public class BookLine
+    {
+        [Key, Column(Order = 0)]
+        public int ContentId { get; set; }
+        [Key, Column(Order = 1)]
+        public int LineIndex { get; set; }
+        public string Line { get; set; }
+    }
+
     public class LibraryDBContext : DbContext
     {
         public DbSet<Content> Contents { get; set; }
+        public DbSet<BookLine> Books { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Content>().ToTable("Contents");
+            modelBuilder.Entity<BookLine>().ToTable("Books");
             base.OnModelCreating(modelBuilder);
         }
     }

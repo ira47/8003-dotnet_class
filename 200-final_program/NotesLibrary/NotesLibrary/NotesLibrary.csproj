@@ -196,17 +196,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Books.mdf" />
-    <Content Include="App_Data\Books_log.ldf">
-      <DependentUpon>Books.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\Librarys.mdf" />
     <Content Include="App_Data\Librarys_log.ldf">
       <DependentUpon>Librarys.mdf</DependentUpon>
-    </Content>
-    <Content Include="App_Data\Notes.mdf" />
-    <Content Include="App_Data\Notes_log.ldf">
-      <DependentUpon>Notes.mdf</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

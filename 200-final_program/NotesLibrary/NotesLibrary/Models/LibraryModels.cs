@@ -14,7 +14,6 @@ namespace NotesLibrary.Models
         public string Author { get; set; }
         public bool IsPrivate { get; set; }
         public string Category { get; set; }
-        public bool HasText { get; set; }
         public string Description { get; set; }
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Web.UI.WebControls;
 
 namespace NotesLibrary.Models
 {
@@ -23,6 +24,11 @@ namespace NotesLibrary.Models
 
         [Display(Name = "是否为私有书籍")]
         public bool IsPrivate { get; set; }
+        
+        [Display(Name = "选择文件")]
+        public string TextPath { get; set; }
+
+        public HttpPostedFileBase TextFile { get; set; }
 
     }
 }

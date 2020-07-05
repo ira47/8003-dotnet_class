@@ -1,0 +1,55 @@
+﻿@model NotesLibrary.Models.ReaderViewModel
+@{
+    ViewBag.Title = "书籍阅读器";
+}
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("Index", "Reader", FormMethod.Post,new { role = "form"}))
+{
+    <table class="table table-striped table-responsive">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>文字</th>
+            </tr>
+        </thead>
+        <tbody>
+       @foreach (var item in Model.BookLines)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.LineIndex)</td>
+                <td>@Html.DisplayFor(modelItem => item.Line)</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <hr />
+    <h3>给自己喜欢的行添加笔记..</h3>
+    @Html.TextBoxFor(modelItem => Model.NoteIndex, new { PlaceHolder = "行号" })
+    @Html.TextBoxFor(modelItem => Model.Note, new { PlaceHolder = "笔记" })
+    @*<input class="input" type="text" placeholder="行号">
+    <input class="input" type="text" placeholder="笔记">*@
+    <input type="submit" class="btn btn-default" value="提交" />
+    <table class="table table-striped table-responsive">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>行号</th>
+                <th>笔记</th>
+            </tr>
+        </thead>
+        <tbody>
+       @foreach (var item in Model.Notes)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Index)</td>
+                <td>@Html.DisplayFor(modelItem => item.LineIndex)</td>
+                <td>@Html.DisplayFor(modelItem => item.Note)</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/bootstrap")
+}

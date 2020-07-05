@@ -29,15 +29,26 @@ namespace NotesLibrary.Models
         public string Line { get; set; }
     }
 
+    public class NoteLine
+    {
+        [Key, Column(Order = 0)]
+        public int ContentId { get; set; }
+        [Key, Column(Order = 1)]
+        public int LineIndex { get; set; }
+        public string Note { get; set; }
+    }
+
     public class LibraryDBContext : DbContext
     {
         public DbSet<Content> Contents { get; set; }
         public DbSet<BookLine> Books { get; set; }
+        public DbSet<NoteLine> Notes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Content>().ToTable("Contents");
             modelBuilder.Entity<BookLine>().ToTable("Books");
+            modelBuilder.Entity<NoteLine>().ToTable("Notes");
             base.OnModelCreating(modelBuilder);
         }
     }

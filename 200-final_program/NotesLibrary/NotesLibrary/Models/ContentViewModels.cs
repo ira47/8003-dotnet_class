@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace NotesLibrary.Models
 {
-    public class AddBasicContentViewModel
+    public class AddContentViewModel
     {
         [Required]
         [Display(Name = "书名")]

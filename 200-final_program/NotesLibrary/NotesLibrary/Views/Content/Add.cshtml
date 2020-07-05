@@ -1,9 +1,9 @@
-﻿@model NotesLibrary.Models.AddBasicContentViewModel
+﻿@model NotesLibrary.Models.AddContentViewModel
 @{
     ViewBag.Title = "添加书籍基本信息";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm("Add", "Content", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
 {
@@ -58,7 +58,4 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/Content/bootstrap-fileinput/js/fileinput.js")
-    @Scripts.Render("~/Content/bootstrap-fileinput/css/fileinput.css")
-    @Scripts.Render("~/Scripts/bootstrap-fileinput.js")
 }

@@ -36,7 +36,8 @@ namespace NotesLibrary.Controllers
                 ReaderViewModel model = new ReaderViewModel {
                     BookLines = lines,
                     Notes = notes,
-                    NoteIndex = null
+                    NoteIndex = null,
+                    Page = 5
                 };
                 return View(model);
             }
@@ -46,14 +47,17 @@ namespace NotesLibrary.Controllers
         {
             using (LibraryDBContext db = new LibraryDBContext())
             {
-                NoteLine note = new NoteLine
+                if (model.NoteIndex != null)
                 {
-                    ContentId = 1,
-                    LineIndex = model.NoteIndex,
-                    Note = model.Note
-                };
-                db.Notes.Add(note);
-                db.SaveChanges();
+                    NoteLine note = new NoteLine
+                    {
+                        ContentId = 1,
+                        LineIndex = (int)model.NoteIndex,
+                        Note = model.Note
+                    };
+                    db.Notes.Add(note);
+                    db.SaveChanges();
+                } 
                 return RedirectToAction("Index");
             }
         }

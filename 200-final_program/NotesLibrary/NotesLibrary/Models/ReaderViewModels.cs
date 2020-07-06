@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using PagedList;
 
 namespace NotesLibrary.Models
 {
@@ -13,10 +14,12 @@ namespace NotesLibrary.Models
     }
     public class ReaderViewModel
     {
+        // public IEnumerable<BookLine> BookLines { get; set; }
         public IEnumerable<BookLine> BookLines { get; set; }
         public IEnumerable<NoteViewModel> Notes { get; set; }
         public int? NoteIndex { get; set; }
         public string Note { get; set; }
+        public int Page { get; set; }
 
     }
 }

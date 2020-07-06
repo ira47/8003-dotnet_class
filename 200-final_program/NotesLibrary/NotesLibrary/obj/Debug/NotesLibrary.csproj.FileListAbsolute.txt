@@ -270,3 +270,7 @@ C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\obj
 C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\obj\Debug\NotesLibrary.csproj.CopyComplete
 C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\obj\Debug\NotesLibrary.dll
 C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\obj\Debug\NotesLibrary.pdb
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\bin\PagedList.dll
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\bin\PagedList.Mvc.dll
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\bin\PagedList.xml
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\bin\PagedList.Mvc.xml

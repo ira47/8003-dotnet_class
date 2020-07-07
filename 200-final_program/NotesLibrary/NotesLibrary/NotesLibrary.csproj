@@ -187,8 +187,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\BookshelfController.cs" />
-    <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReaderController.cs" />
@@ -196,9 +196,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ContentViewModels.cs" />
+    <Compile Include="Models\BookViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LibraryModels.cs" />
+    <Compile Include="Models\HomeViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ReaderViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -244,9 +245,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -267,10 +265,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Content\Add.cshtml" />
+    <Content Include="Views\Home\Add.cshtml" />
     <Content Include="Views\Reader\Index.cshtml" />
     <Content Include="Views\Bookshelf\Index.cshtml" />
-    <Content Include="Views\Bookshelf\Details.cshtml" />
+    <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\DividendText\" />

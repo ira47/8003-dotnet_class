@@ -1,63 +1,133 @@
-﻿using NotesLibrary.Models;
+﻿using Microsoft.AspNet.Identity;
+using NotesLibrary.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace NotesLibrary.Controllers
 {
     public class ReaderController : Controller
     {
-        // GET: Reader
+        public static int LinePerPage = 20;
         public ActionResult Index()
         {
+            string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            if (UserId == "")
+                return View(new ReaderViewModel { HasLogin = false });
             using (LibraryDBContext db = new LibraryDBContext())
             {
+                User user = db.Users.Find(UserId);
+                if (user.LastBook == null)
+                    return View(new ReaderViewModel { HasLogin = true, HasChooseBook = false });
+                BookInfo book = db.BookInfoes.Find(user.LastBook);
                 List<BookLine> lines = new List<BookLine>();
-                List<NoteViewModel> notes = new List<NoteViewModel>();
+                List<NoteLine> notes = new List<NoteLine>();
                 int NotesCount = 0;
-                for (int i = 1; i <= 20; i++)
+                for (int line = user.LastLine; line < user.LastLine + LinePerPage; line++)
                 {
-                    BookLine bookLine = db.Books.Find(1, i);
+                    BookLine bookLine = db.Books.Find(user.LastBook, line);
                     if (bookLine != null)
                         lines.Add(bookLine);
-                    NoteLine noteLine = db.Notes.Find(1, i);
+                    NoteLine noteLine = db.Notes.Find(user.LastNote, line);
                     if (noteLine != null)
                     {
                         NotesCount++;
-                        notes.Add(new NoteViewModel {
-                            Index = NotesCount,
-                            LineIndex = noteLine.LineIndex,
-                            Note = noteLine.Note
-                        });
+                        notes.Add(noteLine);
                     }
                 }
-                ReaderViewModel model = new ReaderViewModel {
+                var copyrightUser = db.Users.Find(book.OwnerId);
+                string copyrightName;
+                if (copyrightUser == null)
+                    copyrightName = "公有";
+                else
+                    copyrightName = copyrightUser.UserName;
+                var ownerUserId = db.NoteInfoes.Find(user.LastNote).OwnerId;
+                string ownerName = db.Users.Find(ownerUserId).UserName;
+                return View(new ReaderViewModel
+                {
+                    HasLogin = true,
+                    HasChooseBook = true,
                     BookLines = lines,
                     Notes = notes,
-                    NoteIndex = null,
-                    Page = 5
-                };
-                return View(model);
+                    TotalNotes = NotesCount,
+                    StartLine = user.LastLine,
+                    EndLine = user.LastLine + LinePerPage - 1,
+                    BookName = book.Name,
+                    OwnerName = ownerName,
+                    CopyrightName = copyrightName,
+                    Page = (user.LastLine + LinePerPage - 1) / LinePerPage,
+                    TotalPage = (book.TotalLine + LinePerPage - 1) / LinePerPage,
+                    LinePerPage = LinePerPage
+                });
             }
         }
-        [HttpPost]
-        public ActionResult Index(ReaderViewModel model)
+        public ActionResult ChangeLine(int line)
         {
             using (LibraryDBContext db = new LibraryDBContext())
             {
-                if (model.NoteIndex != null)
+                string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                User user = db.Users.Find(UserId);
+                BookInfo book = db.BookInfoes.Find(user.LastBook);
+                if (line < 1)
+                    line = 1;
+                if (line > book.TotalLine)
+                    line = book.TotalLine - LinePerPage + 1;
+                user.LastLine = line;
+                db.Users.AddOrUpdate(user);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+        }
+        public ActionResult InitReader(int BookId, int NoteId)
+        {
+            using (LibraryDBContext db = new LibraryDBContext())
+            {
+                string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                User user = db.Users.Find(UserId);
+                if (user == null)
+                    return RedirectToAction("Index");
+                user.LastBook = BookId;
+                user.LastNote = NoteId;
+                user.LastLine = 1;
+                db.Users.AddOrUpdate(user);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+        }
+        public ActionResult AddNote(int? NoteIndex, string Note)
+        {
+            using (LibraryDBContext db = new LibraryDBContext())
+            {
+                if (NoteIndex != null)
                 {
+                    string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                    User user = db.Users.Find(UserId);
                     NoteLine note = new NoteLine
                     {
-                        ContentId = 1,
-                        LineIndex = (int)model.NoteIndex,
-                        Note = model.Note
+                        NoteId = user.LastNote,
+                        LineIndex = (int)NoteIndex,
+                        UserName = System.Web.HttpContext.Current.User.Identity.Name,
+                        Note = Note
                     };
                     db.Notes.Add(note);
                     db.SaveChanges();
-                } 
+                }
+                return RedirectToAction("Index");
+            }
+        }
+        public ActionResult DeleteNote(int NoteIndex)
+        {
+            using (LibraryDBContext db = new LibraryDBContext())
+            {
+                string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                User user = db.Users.Find(UserId);
+                NoteLine note = db.Notes.Find(user.LastNote, NoteIndex);
+                db.Notes.Remove(note);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
         }

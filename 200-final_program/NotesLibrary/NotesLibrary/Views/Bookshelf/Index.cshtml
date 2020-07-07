@@ -1,25 +1,46 @@
-﻿@model IEnumerable<NotesLibrary.Models.Content>
+﻿@model NotesLibrary.Models.BasicBookViewModel
 @{
     ViewBag.Title = "书架";
 }
 
 <h2>@ViewBag.Title</h2>
-<div class="container">
-@foreach (var item in Model)
+@if (Model.HasLogin == false)
 {
-    <div class="col-md-3">
-        <div class="thumbnail">
-            <img src="~/Content/book.jpg" alt="..."  class="img-responsive">
-            <div class="caption">
-                <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
-                <h4>评分4.5，共10人评分</h4>
-                @Html.ActionLink("详情信息", "Details", new { id = item.Id })
-                @Html.ActionLink("加入书架", "Details", new { id = item.Id })
+    <h1>目前还没有登录，请登录后重试。</h1>
+}
+else
+{
+<h3>
+    书架一共有
+    @Html.DisplayFor(m=>Model.TotalBook)
+    本书。
+</h3>
+<div class="container">
+    @foreach (var item in Model.BasicBooks)
+    {
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <img src="~/Content/book.jpg" alt="..."  class="img-responsive">
+                <div class="caption">
+                    <h3>@Html.DisplayFor(m => item.BookName)</h3>
+                    <h4>
+                        评分:
+                        @Html.DisplayFor(m => item.Rank)
+                        /5【
+                        @Html.DisplayFor(m => item.RankPeople)
+                        人】
+                    </h4>
+                    <br />
+                    @Html.ActionLink("详情信息", "Index", "Book", 
+                        new { BookId = item.BookId, NoteId = item.NoteId }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("开始阅读", "InitReader", "Reader", 
+                        new { BookId = item.BookId, NoteId = item.NoteId }, new { @class = "btn btn-default" })
+                </div>
             </div>
         </div>
-    </div>
-}
+    }
 </div>
+}
 @section Scripts {
     @Scripts.Render("~/bundles/bootstrap")
 }

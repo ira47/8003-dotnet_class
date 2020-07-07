@@ -4,12 +4,29 @@
 }
 
 <h2>@ViewBag.Title</h2>
-@using (Html.BeginForm("Index", "Reader", FormMethod.Post, new { role = "form" }))
+@if (Model.HasLogin == false)
 {
+    <h1>目前还没有登录，请登录后重试。</h1>
+}
+else if (Model.HasChooseBook == false)
+{
+    <h1>目前还没有选择一本需要阅读的书，请选择一本书开始阅读哦。</h1>
+}
+else
+{
+    <h1>@Html.DisplayFor(m => Model.BookName) </h1>
+    <h2>
+        浏览第
+        @Html.DisplayFor(m => Model.StartLine)
+        -
+        @Html.DisplayFor(m => Model.EndLine)
+        行的文章内容。
+    </h2>
+    <br />
     <table class="table table-striped table-responsive">
         <thead>
             <tr>
-                <th>No.</th>
+                <th>行号</th>
                 <th>文字</th>
             </tr>
         </thead>
@@ -23,33 +40,82 @@
             }
         </tbody>
     </table>
+    @Html.ActionLink("上一页", "ChangeLine", new
+    {
+        Line = Model.StartLine - Model.LinePerPage
+    }, new { @class = "btn btn-default" })
+    @using(Html.BeginForm("Register", "Account", FormMethod.Post)
+    { 
 
-<hr />
-<h3>给自己喜欢的行添加笔记..</h3>
-@Html.TextBoxFor(modelItem => Model.NoteIndex, new { PlaceHolder = "行号" })
-@Html.TextBoxFor(modelItem => Model.Note, new { PlaceHolder = "笔记" })
-@*<input class="input" type="text" placeholder="行号">
-    <input class="input" type="text" placeholder="笔记">*@
-<input type="submit" class="btn btn-default" value="提交" />
-<table class="table table-striped table-responsive">
-    <thead>
-        <tr>
-            <th>No.</th>
-            <th>行号</th>
-            <th>笔记</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Notes)
-        {
+    }
+    <label>
+        当前第
+        @Html.DisplayFor(m => Model.Page)
+        页，一共
+        @Html.DisplayFor(m => Model.TotalPage)
+        页。跳转到第
+        @Html.EditorFor(m => Model.GotoPage)
+        页
+    </label>
+    @Html.ActionLink("跳转", "ChangeLine", new
+    {
+        Line = (Model.GotoPage - 1) * Model.LinePerPage + 1
+    }, new { @class = "btn btn-default" })
+    @Html.ActionLink("下一页", "ChangeLine", new
+    {
+        Line = Model.StartLine + Model.LinePerPage
+    }, new { @class = "btn btn-default" })
+    <hr />
+    <h2>
+        浏览第
+        @Html.DisplayFor(m => Model.StartLine)
+        -
+        @Html.DisplayFor(m => Model.EndLine)
+        行的笔记。一共有
+        @Html.DisplayFor(m => Model.TotalNotes)
+        条笔记。
+    </h2>
+    <h3>给自己喜欢的行添加笔记..</h3>
+    @Html.EditorFor(modelItem => Model.NoteIndex, new { PlaceHolder = "行号" })
+    @Html.EditorFor(modelItem => Model.Note, new { PlaceHolder = "笔记" })
+    @Html.ActionLink("添加/修改笔记", "AddNote", new
+    {
+        NoteIndex = Model.NoteIndex,
+        Note = Model.Note
+    }, new { @class = "btn btn-default" })
+    <table class="table table-striped table-responsive">
+        <thead>
             <tr>
-                <td>@Html.DisplayFor(modelItem => item.Index)</td>
-                <td>@Html.DisplayFor(modelItem => item.LineIndex)</td>
-                <td>@Html.DisplayFor(modelItem => item.Note)</td>
+                <th>行号</th>
+                <th>笔记作者</th>
+                <th>笔记</th>
+                <th>操作</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Notes)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.LineIndex)</td>
+                    <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Note)</td>
+                    <td>
+                        @Html.ActionLink("删除", "DeleteNote", new
+                        {
+                        Note = item.LineIndex
+                   })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <h3>
+        本书版权归属
+        @Html.DisplayFor(m => Model.CopyrightName)
+        ，拥有者是
+        @Html.DisplayFor(m => Model.OwnerName)
+        。
+    </h3>
 }
 @section Scripts {
     @Scripts.Render("~/bundles/bootstrap")

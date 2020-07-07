@@ -32,6 +32,16 @@
             @Html.DisplayFor(m => m.Description)
         </div>
     </div>
-    @Html.ActionLink("加入书架", "Details", new { model = Model}, new { @class = "btn btn-default" })
-    @Html.ActionLink("开始阅读", "Details", new { model = Model}, new { @class = "btn btn-default" })
+    @if (Model.NoteId == null)
+    {
+        @Html.ActionLink("加入书架", "Add", "Bookshelf",
+            new { BookId = Model.BookId }, new { @class = "btn btn-default" })
+    }
+    else
+    {
+        @Html.ActionLink("分享书籍", "Create", "Share",
+            new { BookId = Model.BookId, NoteId = Model.NoteId }, new { @class = "btn btn-default" })
+        @Html.ActionLink("开始阅读", "InitReader", "Reader",
+            new { BookId = Model.BookId, NoteId = Model.NoteId }, new { @class = "btn btn-default" })
+    }
 </div>

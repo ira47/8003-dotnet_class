@@ -11,7 +11,7 @@ namespace NotesLibrary.Controllers
     public class BookController : Controller
     {
         // GET: Book
-        public ActionResult Index(int? BookId, int NoteId)
+        public ActionResult Index(int? BookId, int? NoteId)
         {
             if (BookId == null)
             {

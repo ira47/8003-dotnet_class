@@ -1,6 +1,6 @@
 ﻿@model NotesLibrary.Models.AddBookViewModel
 @{
-    ViewBag.Title = "添加书籍基本信息";
+    ViewBag.Title = "添加书籍";
 }
 
 <h2>@ViewBag.Title</h2>
@@ -8,7 +8,7 @@
 @using (Html.BeginForm("Add", "Bookshelf", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    <h4>给自己或大家添加书籍的基本信息。</h4>
+    <h4>给自己或大家添加书籍。</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">

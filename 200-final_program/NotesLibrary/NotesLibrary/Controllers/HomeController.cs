@@ -19,12 +19,47 @@ namespace NotesLibrary.Controllers
         // GET: Library
         public ActionResult Index()
         {
-            var model = new HomeViewModel
+            using (LibraryDBContext db = new LibraryDBContext())
             {
-                UserName = System.Web.HttpContext.Current.User.Identity.Name,
-                UserId = System.Web.HttpContext.Current.User.Identity.GetUserId()
-            };
-            return View(model);
+                string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                var user = db.Users.Find(UserId);
+                bool HasLogin = true;
+                if (user == null)
+                    HasLogin = false;
+                int TotalBooks = db.BookInfoes.Max(p => p.Id);
+                var basicBooks = new List<BasicBookInfo>();
+                int ValidBookCount = 0;
+                for (int i = 1; i <= TotalBooks; i++)
+                {
+                    BookInfo book = db.BookInfoes.Find(i);
+                    if (book == null)
+                        continue;
+                    var copyrightUser = db.Users.Find(book.OwnerId);
+                    if (copyrightUser != null)
+                        continue;
+                    ValidBookCount++;
+                    int? NoteId = null;
+                    if (HasLogin)
+                    {
+                        var noteInfo = db.NoteInfoes.Find(book.Id, UserId);
+                        if (noteInfo != null)
+                            NoteId = noteInfo.Id;
+                    }
+                    basicBooks.Add(new BasicBookInfo
+                    {
+                        BookId = book.Id,
+                        NoteId = NoteId,
+                        BookName = book.Name,
+                        Rank = (book.TotalRank * 10 / book.RankPeople / 10.0).ToString(),
+                        ReadPeople = book.ReadPeople
+                    });
+                }
+                return View(new BasicBookViewModel
+                {
+                    BasicBooks = basicBooks,
+                    TotalBook = ValidBookCount
+                });
+            }
         }
 
         public ActionResult Add()

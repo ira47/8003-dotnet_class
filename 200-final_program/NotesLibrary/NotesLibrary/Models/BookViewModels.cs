@@ -10,10 +10,10 @@ namespace NotesLibrary.Models
     public class BasicBookInfo
     {
         public int BookId { get; set; }
-        public int NoteId { get; set; }
+        public int? NoteId { get; set; }
         public string BookName { get; set; }
         public string Rank { get; set; }
-        public int RankPeople { get; set; }
+        public int ReadPeople { get; set; }
     }
     public class BasicBookViewModel
     {
@@ -24,7 +24,7 @@ namespace NotesLibrary.Models
     public class DetailBookViewModel
     {
         public int BookId { get; set; }
-        public int NoteId { get; set; }
+        public int? NoteId { get; set; }
         public string Name { get; set; }
         public string ISBN { get; set; }
         public string Author { get; set; }

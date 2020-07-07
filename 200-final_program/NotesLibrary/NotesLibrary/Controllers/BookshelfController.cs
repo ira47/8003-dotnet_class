@@ -37,7 +37,7 @@ namespace NotesLibrary.Controllers
                         NoteId = NoteId,
                         BookName = book.Name,
                         Rank = (book.TotalRank*10/book.RankPeople/10.0).ToString(),
-                        RankPeople = book.RankPeople
+                        ReadPeople = book.ReadPeople
                     });
                 }
                 return View(new BasicBookViewModel

@@ -21,6 +21,7 @@ namespace NotesLibrary.Models
         public string Description { get; set; }
         public int TotalRank { get; set; }
         public int RankPeople { get; set; }
+        public int ReadPeople { get; set; }
         public int TotalLine { get; set; }
     }
 
@@ -66,7 +67,10 @@ namespace NotesLibrary.Models
     public class NoteInfo
     {
         public int Id { get; set; }
+        [Key, Column(Order = 0)]
         public int BookId { get; set; }
+        [StringLength(128)]
+        [Key, Column(Order = 1)]
         public string OwnerId { get; set; }
     }
 

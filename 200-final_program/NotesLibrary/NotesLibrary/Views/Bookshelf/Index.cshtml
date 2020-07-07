@@ -24,16 +24,19 @@ else
                 <div class="caption">
                     <h3>@Html.DisplayFor(m => item.BookName)</h3>
                     <h4>
-                        评分:
+                        评分：
                         @Html.DisplayFor(m => item.Rank)
-                        /5【
-                        @Html.DisplayFor(m => item.RankPeople)
-                        人】
+                        / 5
+                    </h4>
+                    <h4>
+                        共有
+                        @Html.DisplayFor(m => item.ReadPeople)
+                        人阅读。
                     </h4>
                     <br />
-                    @Html.ActionLink("详情信息", "Index", "Book", 
+                    @Html.ActionLink("详情信息", "Index", "Book",
                         new { BookId = item.BookId, NoteId = item.NoteId }, new { @class = "btn btn-default" })
-                    @Html.ActionLink("开始阅读", "InitReader", "Reader", 
+                    @Html.ActionLink("开始阅读", "InitReader", "Reader",
                         new { BookId = item.BookId, NoteId = item.NoteId }, new { @class = "btn btn-default" })
                 </div>
             </div>

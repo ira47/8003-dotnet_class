@@ -15,12 +15,12 @@ namespace NotesLibrary.Controllers
         public static int LinePerPage = 20;
         public ActionResult Index()
         {
-            string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
-            if (UserId == "")
-                return View(new ReaderViewModel { HasLogin = false });
             using (LibraryDBContext db = new LibraryDBContext())
             {
+                string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 User user = db.Users.Find(UserId);
+                if (user == null)
+                    return View(new ReaderViewModel { HasLogin = false });
                 if (user.LastBook == null)
                     return View(new ReaderViewModel { HasLogin = true, HasChooseBook = false });
                 BookInfo book = db.BookInfoes.Find(user.LastBook);
@@ -39,14 +39,16 @@ namespace NotesLibrary.Controllers
                         notes.Add(noteLine);
                     }
                 }
+                
                 var copyrightUser = db.Users.Find(book.OwnerId);
                 string copyrightName;
                 if (copyrightUser == null)
                     copyrightName = "公有";
                 else
                     copyrightName = copyrightUser.UserName;
-                var ownerUserId = db.NoteInfoes.Find(user.LastNote).OwnerId;
+                var ownerUserId = db.NoteInfoes.FirstOrDefault(t => t.Id == user.LastNote).OwnerId;
                 string ownerName = db.Users.Find(ownerUserId).UserName;
+
                 return View(new ReaderViewModel
                 {
                     HasLogin = true,
@@ -60,23 +62,19 @@ namespace NotesLibrary.Controllers
                     OwnerName = ownerName,
                     CopyrightName = copyrightName,
                     Page = (user.LastLine + LinePerPage - 1) / LinePerPage,
-                    TotalPage = (book.TotalLine + LinePerPage - 1) / LinePerPage,
-                    LinePerPage = LinePerPage
+                    TotalPage = (book.TotalLine + LinePerPage - 1) / LinePerPage
                 });
             }
         }
-        public ActionResult ChangeLine(int line)
+        public ActionResult ChangePage(int GotoPage)
         {
             using (LibraryDBContext db = new LibraryDBContext())
             {
                 string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 User user = db.Users.Find(UserId);
                 BookInfo book = db.BookInfoes.Find(user.LastBook);
-                if (line < 1)
-                    line = 1;
-                if (line > book.TotalLine)
-                    line = book.TotalLine - LinePerPage + 1;
-                user.LastLine = line;
+
+                user.LastLine = (GotoPage - 1) * LinePerPage + 1;
                 db.Users.AddOrUpdate(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -113,7 +111,7 @@ namespace NotesLibrary.Controllers
                         UserName = System.Web.HttpContext.Current.User.Identity.Name,
                         Note = Note
                     };
-                    db.Notes.Add(note);
+                    db.Notes.AddOrUpdate(note);
                     db.SaveChanges();
                 }
                 return RedirectToAction("Index");

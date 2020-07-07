@@ -40,31 +40,29 @@ else
             }
         </tbody>
     </table>
-    @Html.ActionLink("上一页", "ChangeLine", new
+    using (Html.BeginForm("ChangePage", "Reader", FormMethod.Get))
     {
-        Line = Model.StartLine - Model.LinePerPage
-    }, new { @class = "btn btn-default" })
-    @using(Html.BeginForm("Register", "Account", FormMethod.Post)
-    { 
+        @Html.ActionLink("上一页", "ChangePage", new
+        {
+            GotoPage = Model.Page - 1
+        }, new { @class = "btn btn-default" })
 
+        <label>
+            当前第
+            @Html.DisplayFor(m => Model.Page)
+            页，一共
+            @Html.DisplayFor(m => Model.TotalPage)
+            页。跳转到第
+            @Html.TextBoxFor(m => Model.GotoPage)
+            页
+        </label>
+        <input type="submit" class="btn btn-default" value="跳转" />
+        @Html.ActionLink("下一页", "ChangePage", new
+        {
+            GotoPage = Model.Page + 1
+        }, new { @class = "btn btn-default" })
     }
-    <label>
-        当前第
-        @Html.DisplayFor(m => Model.Page)
-        页，一共
-        @Html.DisplayFor(m => Model.TotalPage)
-        页。跳转到第
-        @Html.EditorFor(m => Model.GotoPage)
-        页
-    </label>
-    @Html.ActionLink("跳转", "ChangeLine", new
-    {
-        Line = (Model.GotoPage - 1) * Model.LinePerPage + 1
-    }, new { @class = "btn btn-default" })
-    @Html.ActionLink("下一页", "ChangeLine", new
-    {
-        Line = Model.StartLine + Model.LinePerPage
-    }, new { @class = "btn btn-default" })
+
     <hr />
     <h2>
         浏览第
@@ -75,14 +73,13 @@ else
         @Html.DisplayFor(m => Model.TotalNotes)
         条笔记。
     </h2>
-    <h3>给自己喜欢的行添加笔记..</h3>
-    @Html.EditorFor(modelItem => Model.NoteIndex, new { PlaceHolder = "行号" })
-    @Html.EditorFor(modelItem => Model.Note, new { PlaceHolder = "笔记" })
-    @Html.ActionLink("添加/修改笔记", "AddNote", new
+    using (Html.BeginForm("AddNote", "Reader", FormMethod.Get))
     {
-        NoteIndex = Model.NoteIndex,
-        Note = Model.Note
-    }, new { @class = "btn btn-default" })
+        <h3>给自己喜欢的行添加笔记..</h3>
+        @Html.TextBoxFor(modelItem => Model.NoteIndex, new { PlaceHolder = "行号" })
+        @Html.TextBoxFor(modelItem => Model.Note, new { PlaceHolder = "笔记" })
+        <input type="submit" class="btn btn-default" value="添加/修改笔记" />
+    }
     <table class="table table-striped table-responsive">
         <thead>
             <tr>
@@ -102,8 +99,8 @@ else
                     <td>
                         @Html.ActionLink("删除", "DeleteNote", new
                         {
-                        Note = item.LineIndex
-                   })
+                            NoteIndex = item.LineIndex
+                        })
                     </td>
                 </tr>
             }

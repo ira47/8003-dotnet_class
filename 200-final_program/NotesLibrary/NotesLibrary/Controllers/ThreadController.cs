@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MultiThread;
 using NotesLibrary.Models;
+using ThreadWritter;
 using ViewModel;
 
 namespace NotesLibrary.Controllers
@@ -14,7 +15,9 @@ namespace NotesLibrary.Controllers
         public static MultiLearning multiLearning = new MultiLearning();
         public ActionResult Index()
         {
+            var writer = new Writer();
             var messages = multiLearning.GetMessages();
+            writer.write(messages.ToArray());
             return View(new ThreadViewModel { Messages = messages});
         }
         public ActionResult Start()

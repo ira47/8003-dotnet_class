@@ -30,16 +30,6 @@ namespace ViewModel
         public int LineIndex { get; set; }
         public string UserName { get; set; }
         public string Note { get; set; }
-
-        public static explicit operator NoteLine(global::NotesLibrary.Models.NoteLine v)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static explicit operator NoteLine(global::NotesLibrary.Models.NoteLine v)
-        {
-            throw new NotImplementedException();
-        }
     }
 
     public class User

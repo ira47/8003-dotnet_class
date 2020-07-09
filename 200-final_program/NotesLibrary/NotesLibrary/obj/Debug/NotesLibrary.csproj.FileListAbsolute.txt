@@ -274,3 +274,11 @@ C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\bin
 C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\bin\PagedList.Mvc.dll
 C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\bin\PagedList.xml
 C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\bin\PagedList.Mvc.xml
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\bin\ViewModel.dll
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\bin\ViewModel.pdb
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\bin\Verification.dll
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\bin\Verification.pdb
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\bin\MultiThread.dll
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\bin\MultiThread.pdb
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\bin\ThreadWritter.dll
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\NotesLibrary\bin\ThreadWritter.pdb

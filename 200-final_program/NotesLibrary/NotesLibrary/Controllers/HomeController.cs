@@ -24,8 +24,21 @@ namespace NotesLibrary.Controllers
                 string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 var user = db.Users.Find(UserId);
                 bool HasLogin = true;
-                if (user == null)
+                if (UserId == null)
                     HasLogin = false;
+                if (UserId != null && user == null)
+                {
+                    string UserName = System.Web.HttpContext.Current.User.Identity.Name;
+                    db.Users.Add(new User
+                    {
+                        Id = UserId,
+                        UserName = UserName,
+                        Books = "",
+                        Notes = "",
+                        LastBook = -1
+                    });
+                    db.SaveChanges();
+                }
                 int TotalBooks = db.BookInfoes.Max(p => p.Id);
                 var basicBooks = new List<BasicBookInfo>();
                 int ValidBookCount = 0;

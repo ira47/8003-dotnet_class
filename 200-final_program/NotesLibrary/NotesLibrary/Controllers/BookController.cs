@@ -1,4 +1,5 @@
-﻿using NotesLibrary.Models;
+﻿using Microsoft.AspNet.Identity;
+using NotesLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,8 +28,13 @@ namespace NotesLibrary.Controllers
                     ownerName = "";
                 else
                     ownerName = ownerUser.UserName;
+                bool hasLogin = true;
+                string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                var user = db.Users.Find(UserId);
+                if (user == null)
+                    hasLogin = false;
 
-                return View(new DetailBookViewModel
+                    return View(new DetailBookViewModel
                 {
                     BookId = (int)BookId,
                     NoteId = NoteId,
@@ -40,7 +46,8 @@ namespace NotesLibrary.Controllers
                     Description = book.Description,
                     Rank = (book.TotalRank * 10 / book.RankPeople / 10.0).ToString(),
                     RankPeople = book.RankPeople,
-                    TotalLine = book.TotalLine
+                    TotalLine = book.TotalLine,
+                    HasLogin = hasLogin
                 });
             }
         }

@@ -1,0 +1,33 @@
+﻿@model NotesLibrary.Models.CreateShareViewModel
+@{
+    ViewBag.Title = "创建分享链接";
+}
+
+@if (Model.HasLogin == false)
+{
+    <h2>@ViewBag.Title</h2>
+    <h1>目前还没有登录，请登录后重试。</h1>
+}
+else if (Model.HasBook == false)
+{
+    <h2>@ViewBag.Title</h2>
+    <h1>抱歉，这本书并不属于您。</h1>
+    <h1>您可能拥有该书副本，但无权分享。</h1>
+}
+else
+{
+<div class="col-md-10">
+    <h2>@ViewBag.Title</h2>
+    <h1>
+        书籍
+        @Html.DisplayFor(m => Model.BookName)
+        的分享界面
+    </h1>
+    <h2>您的分享链接已经生成！分享以下的链接给朋友，来共同阅读该书。</h2>
+    <h3>@Html.DisplayFor(m => Model.NewShareLink)</h3>
+</div>
+    <div class="col-md-2">
+        <br />
+        @Html.ActionLink("返回", "Index", new {BookId = Model.BookId, NoteId = Model.NoteId }, new { @class = "btn btn-default btn-lg" })
+    </div>
+}

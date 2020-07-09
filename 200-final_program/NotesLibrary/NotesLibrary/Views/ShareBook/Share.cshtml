@@ -1,0 +1,34 @@
+﻿@model NotesLibrary.Models.ShareInfoViewModel
+@{
+    ViewBag.Title = "分享链接";
+}
+
+<h2>@ViewBag.Title</h2>
+@if (Model.HasLogin == false)
+{
+    <h1>目前还没有登录，请登录后重试。</h1>
+}
+else if (Model.CurrectLink == false)
+{
+    <h1>该链接无效。请检查链接是否正确。</h1>
+}
+else if (Model.NotUsed == false)
+{
+    <h1>该链接已被使用。</h1>
+}
+else if (Model.NotHasBook == false)
+{
+    <h1>您以拥有该书，不需要链接分享。</h1>
+}
+else
+{
+    <h1>
+        您获得了
+        @Html.DisplayFor(m => Model.BookName)
+        副本，拥有者是
+        @Html.DisplayFor(m => Model.OwnerName)
+        。
+    </h1>
+}
+
+

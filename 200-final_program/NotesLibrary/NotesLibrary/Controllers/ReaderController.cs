@@ -21,7 +21,7 @@ namespace NotesLibrary.Controllers
                 User user = db.Users.Find(UserId);
                 if (user == null)
                     return View(new ReaderViewModel { HasLogin = false });
-                if (user.LastBook == null)
+                if (user.LastBook == -1)
                     return View(new ReaderViewModel { HasLogin = true, HasChooseBook = false });
                 BookInfo book = db.BookInfoes.Find(user.LastBook);
                 List<BookLine> lines = new List<BookLine>();

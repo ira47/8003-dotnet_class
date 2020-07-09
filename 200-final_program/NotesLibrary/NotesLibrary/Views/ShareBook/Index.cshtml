@@ -1,0 +1,50 @@
+﻿@model NotesLibrary.Models.ShareBookViewModel
+@{
+    ViewBag.Title = "分享链接";
+}
+
+@if (Model.HasLogin == false)
+{
+    <h2>@ViewBag.Title</h2>
+    <h1>目前还没有登录，请登录后重试。</h1>
+}
+else if (Model.HasBook == false)
+{
+    <h2>@ViewBag.Title</h2>
+    <h1>抱歉，这本书并不属于您。</h1>
+    <h1>您可能拥有该书副本，但无权分享。</h1>
+}
+else
+{
+    <div class="col-md-10">
+        <h2>@ViewBag.Title</h2>
+        <h1>@Html.DisplayFor(m => Model.BookName)</h1>
+            <h2>查看本书的分享记录。</h2>
+    </div>
+    <div class="col-md-2">
+        <br>
+        @Html.ActionLink("新建分享链接", "Create", new { BookId = Model.BookId, NoteId = Model.NoteId }, new { @class = "btn btn-default btn-lg" })
+    </div>
+    <table class="table table-striped table-responsive">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>分享链接</th>
+                <th>是否使用</th>
+                <th>使用者</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ShareInfoes)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Index)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ShareLink)</td>
+                    <td>@Html.DisplayFor(modelItem => item.HasImplemented)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ImplementName)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

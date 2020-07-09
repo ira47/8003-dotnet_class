@@ -34,7 +34,7 @@ namespace NotesLibrary.Models
         public string Rank { get; set; }
         public int RankPeople { get; set; }
         public int TotalLine { get; set; }
-        public int MyRank { get; set; }
+        public bool HasLogin { get; set; }
     }
     public class AddBookViewModel
     {

@@ -52,17 +52,9 @@ namespace NotesLibrary.Models
         public string UserName { get; set; }
         public string Books { get; set; }
         public string Notes { get; set; }
-        public int? LastBook { get; set; }
+        public int LastBook { get; set; }
         public int LastNote { get; set; }
         public int LastLine { get; set; }
-    }
-    public class LendBook
-    {
-        [Key, Column(Order = 0)]
-        public string UserId { get; set; }
-        [Key, Column(Order = 1)]
-        public int NoteId { get; set; }
-        public bool HasLend { get; set; }
     }
     public class NoteInfo
     {
@@ -74,6 +66,15 @@ namespace NotesLibrary.Models
         public string OwnerId { get; set; }
     }
 
+    public class ShareLine
+    {
+        [Key]
+        public string VerifyCode { get; set; }
+        public int BookId { get; set; }
+        public string UserId { get; set; }
+        public string ImplementId { get; set; }
+    }
+
     public class LibraryDBContext : DbContext
     {
         public DbSet<BookInfo> BookInfoes { get; set; }
@@ -81,7 +82,7 @@ namespace NotesLibrary.Models
         public DbSet<NoteLine> Notes { get; set; }
         public DbSet<NoteInfo> NoteInfoes { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<LendBook> LendBooks { get; set; }
+        public DbSet<ShareLine> Shares { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -90,7 +91,7 @@ namespace NotesLibrary.Models
             modelBuilder.Entity<NoteLine>().ToTable("Notes");
             modelBuilder.Entity<NoteInfo>().ToTable("NoteInfoes");
             modelBuilder.Entity<User>().ToTable("Users");
-            modelBuilder.Entity<LendBook>().ToTable("LendBooks");
+            modelBuilder.Entity<ShareLine>().ToTable("Shares");
             base.OnModelCreating(modelBuilder);
         }
     }

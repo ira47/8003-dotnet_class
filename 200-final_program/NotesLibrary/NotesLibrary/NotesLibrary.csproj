@@ -192,6 +192,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReaderController.cs" />
+    <Compile Include="Controllers\ShareBookController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -202,6 +203,7 @@
     <Compile Include="Models\HomeViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ReaderViewModels.cs" />
+    <Compile Include="Models\ShareBookViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -270,6 +272,9 @@
     <Content Include="Views\Bookshelf\Index.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\ShareBook\Index.cshtml" />
+    <Content Include="Views\ShareBook\Create.cshtml" />
+    <Content Include="Views\ShareBook\Share.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\DividendText\" />

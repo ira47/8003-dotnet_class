@@ -2,6 +2,7 @@
 using NotesLibrary.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -26,7 +27,7 @@ namespace NotesLibrary.Controllers
                 string[] books = user.Books.Split(',');
                 string[] notes = user.Notes.Split(',');
                 var basicBooks = new List<BasicBookInfo>();
-                for (int i=0;i<books.Length;i++)
+                for (int i = 0; i < books.Length; i++)
                 {
                     int BookId = Int32.Parse(books[i]);
                     int NoteId = Int32.Parse(notes[i]);
@@ -36,7 +37,7 @@ namespace NotesLibrary.Controllers
                         BookId = BookId,
                         NoteId = NoteId,
                         BookName = book.Name,
-                        Rank = (book.TotalRank*10/book.RankPeople/10.0).ToString(),
+                        Rank = (book.TotalRank * 10 / book.RankPeople / 10.0).ToString(),
                         ReadPeople = book.ReadPeople
                     });
                 }
@@ -46,6 +47,39 @@ namespace NotesLibrary.Controllers
                     BasicBooks = basicBooks,
                     TotalBook = books.Length
                 });
+            }
+        }
+        public ActionResult Add(int BookId)
+        {
+            using (LibraryDBContext db = new LibraryDBContext())
+            {
+                string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                var user = db.Users.Find(UserId);
+                if (user != null)
+                {
+                    int MaxNotetId = db.NoteInfoes.Max(p => p.Id);
+                    db.NoteInfoes.Add(new NoteInfo
+                    {
+                        BookId = BookId,
+                        OwnerId = UserId,
+                        Id = MaxNotetId + 1
+                    });
+                    db.SaveChanges();
+
+                    var noteInfo = db.NoteInfoes.Find(BookId, UserId);
+                    string bookIdStr = BookId.ToString();
+                    string noteIdStr = noteInfo.Id.ToString();
+                    if (user.Books != "")
+                    {
+                        user.Books += ",";
+                        user.Notes += ",";
+                    }
+                    user.Books += bookIdStr;
+                    user.Notes += noteIdStr;
+                    db.Users.AddOrUpdate(user);
+                    db.SaveChanges();
+                }
+                return RedirectToAction("Index");
             }
         }
     }

@@ -32,14 +32,14 @@
             @Html.DisplayFor(m => m.Description)
         </div>
     </div>
-    @if (Model.NoteId == null)
+    @if (Model.NoteId == null && Model.HasLogin)
     {
         @Html.ActionLink("加入书架", "Add", "Bookshelf",
             new { BookId = Model.BookId }, new { @class = "btn btn-default" })
     }
-    else
+    else if (Model.HasLogin)
     {
-        @Html.ActionLink("分享书籍", "Create", "Share",
+        @Html.ActionLink("分享书籍", "Index", "ShareBook",
             new { BookId = Model.BookId, NoteId = Model.NoteId }, new { @class = "btn btn-default" })
         @Html.ActionLink("开始阅读", "InitReader", "Reader",
             new { BookId = Model.BookId, NoteId = Model.NoteId }, new { @class = "btn btn-default" })

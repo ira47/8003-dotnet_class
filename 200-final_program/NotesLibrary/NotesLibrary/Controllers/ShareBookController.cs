@@ -6,6 +6,7 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ViewModel;
 
 namespace NotesLibrary.Controllers
 {
@@ -16,17 +17,17 @@ namespace NotesLibrary.Controllers
             using (LibraryDBContext db = new LibraryDBContext())
             {
                 string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
-                User user = db.Users.Find(UserId);
+                Models.User user = db.Users.Find(UserId);
                 if (user == null)
-                    return View(new ShareBookViewModel { HasLogin = false });
+                    return View(new ViewModel.ShareBookViewModel { HasLogin = false });
                 var noteInfo = db.NoteInfoes.Find(BookId, user.Id);
                 if (noteInfo == null || noteInfo.Id != NoteId)
-                    return View(new ShareBookViewModel { HasLogin = true, HasBook = false });
+                    return View(new ViewModel.ShareBookViewModel { HasLogin = true, HasBook = false });
                 var shareLines = db.Shares.Where(b => b.BookId == BookId && b.UserId == user.Id).ToList();
                 // var shareLines = db.Shares.Where(b => b.UserId == user.Id).ToList();
                 // var shareLines = from s in db.Shares where s.BookId == BookId && s.UserId == user.Id select s;
                 int shareCount = 0;
-                var shareInfoes = new List<ShareInfo>();
+                var shareInfoes = new List<Models.ShareInfo>();
                 foreach (var shareLine in shareLines)
                 {
                     shareCount++;
@@ -40,7 +41,7 @@ namespace NotesLibrary.Controllers
                         var implementUser = db.Users.Find(shareLine.ImplementId);
                         implementName = implementUser.UserName;
                     }
-                    shareInfoes.Add(new ShareInfo
+                    shareInfoes.Add(new Models.ShareInfo
                     {
                         Index = shareCount,
                         ShareLink = shareLink,
@@ -48,12 +49,12 @@ namespace NotesLibrary.Controllers
                         ImplementName = implementName
                     });
                 }
-                return View(new ShareBookViewModel
+                return View(new ViewModel.ShareBookViewModel
                 {
                     HasLogin = true,
                     HasBook = true,
                     BookName = db.BookInfoes.Find(BookId).Name,
-                    ShareInfoes = shareInfoes,
+                    ShareInfoes = (IEnumerable<ViewModel.ShareInfo>)shareInfoes,
                     BookId = BookId,
                     NoteId = NoteId
                 });
@@ -92,14 +93,14 @@ namespace NotesLibrary.Controllers
             using (LibraryDBContext db = new LibraryDBContext())
             {
                 string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
-                User user = db.Users.Find(UserId);
+                Models.User user = db.Users.Find(UserId);
                 if (user == null)
-                    return View(new ShareBookViewModel { HasLogin = false });
+                    return View(new ViewModel.ShareBookViewModel { HasLogin = false });
                 var noteInfo = db.NoteInfoes.Find(BookId, user.Id);
                 if (noteInfo == null || noteInfo.Id != NoteId)
-                    return View(new ShareBookViewModel { HasLogin = true, HasBook = false });
+                    return View(new ViewModel.ShareBookViewModel { HasLogin = true, HasBook = false });
                 string verifyCode = GenerateVerifyCode();
-                db.Shares.Add(new ShareLine
+                db.Shares.Add(new Models.ShareLine
                 {
                     VerifyCode = verifyCode,
                     BookId = BookId,
@@ -107,7 +108,7 @@ namespace NotesLibrary.Controllers
                 });
                 db.SaveChanges();
                 string shareLink = GenerateShareLink(BookId, user.Id, verifyCode, false);
-                return View(new CreateShareViewModel
+                return View(new ViewModel.CreateShareViewModel
                 {
                     HasLogin = true,
                     HasBook = true,
@@ -123,14 +124,14 @@ namespace NotesLibrary.Controllers
             using (LibraryDBContext db = new LibraryDBContext())
             {
                 string implementId = System.Web.HttpContext.Current.User.Identity.GetUserId();
-                User implementUser = db.Users.Find(implementId);
+                Models.User implementUser = db.Users.Find(implementId);
                 if (implementUser == null)
-                    return View(new ShareInfoViewModel { HasLogin = false });
+                    return View(new ViewModel.ShareInfoViewModel { HasLogin = false });
                 var shareInfo = db.Shares.Find(VerifyCode);
                 if (shareInfo == null || shareInfo.UserId != UserId || shareInfo.BookId != BookId)
-                    return View(new ShareInfoViewModel { HasLogin = true, CurrectLink = false });
+                    return View(new ViewModel.ShareInfoViewModel { HasLogin = true, CurrectLink = false });
                 if (shareInfo.ImplementId != null)
-                    return View(new ShareInfoViewModel { HasLogin = true, CurrectLink = true, NotUsed = false });
+                    return View(new ViewModel.ShareInfoViewModel { HasLogin = true, CurrectLink = true, NotUsed = false });
 
                 var noteInfo = db.NoteInfoes.Find(BookId, UserId);
                 string bookIdStr = BookId.ToString();
@@ -145,7 +146,7 @@ namespace NotesLibrary.Controllers
                         break;
                     }
                 if (hasBook)
-                    return View(new ShareInfoViewModel { HasLogin = true, CurrectLink = true, NotUsed = true, NotHasBook = false });
+                    return View(new ViewModel.ShareInfoViewModel { HasLogin = true, CurrectLink = true, NotUsed = true, NotHasBook = false });
                 
                 if (implementUser.Books != "")
                 {
@@ -158,7 +159,7 @@ namespace NotesLibrary.Controllers
                 shareInfo.ImplementId = implementId;
                 db.Shares.AddOrUpdate(shareInfo);
                 db.SaveChanges();
-                return View(new ShareInfoViewModel
+                return View(new ViewModel.ShareInfoViewModel
                 {
                     HasLogin = true,
                     CurrectLink = true,

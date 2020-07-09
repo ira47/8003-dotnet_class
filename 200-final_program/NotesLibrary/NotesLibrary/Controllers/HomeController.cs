@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using ViewModel;
 
 namespace NotesLibrary.Controllers
 {
@@ -30,7 +31,7 @@ namespace NotesLibrary.Controllers
                 if (UserId != null && user == null)
                 {
                     string UserName = System.Web.HttpContext.Current.User.Identity.Name;
-                    db.Users.Add(new User
+                    db.Users.Add(new Models.User
                     {
                         Id = UserId,
                         UserName = UserName,
@@ -41,11 +42,11 @@ namespace NotesLibrary.Controllers
                     db.SaveChanges();
                 }
                 int TotalBooks = db.BookInfoes.Max(p => p.Id);
-                var basicBooks = new List<BasicBookInfo>();
+                var basicBooks = new List<ViewModel.BasicBookInfo>();
                 int ValidBookCount = 0;
                 for (int i = 1; i <= TotalBooks; i++)
                 {
-                    BookInfo book = db.BookInfoes.Find(i);
+                    Models.BookInfo book = db.BookInfoes.Find(i);
                     if (book == null)
                         continue;
                     var copyrightUser = db.Users.Find(book.OwnerId);
@@ -62,7 +63,7 @@ namespace NotesLibrary.Controllers
                     string rank = "0";
                     if (book.RankPeople != 0)
                         rank = (book.TotalRank * 10 / book.RankPeople / 10.0).ToString();
-                    basicBooks.Add(new BasicBookInfo
+                    basicBooks.Add(new ViewModel.BasicBookInfo
                     {
                         BookId = book.Id,
                         NoteId = NoteId,
@@ -71,7 +72,7 @@ namespace NotesLibrary.Controllers
                         ReadPeople = book.ReadPeople
                     });
                 }
-                return View(new BasicBookViewModel
+                return View(new ViewModel.BasicBookViewModel
                 {
                     BasicBooks = basicBooks,
                     TotalBook = ValidBookCount
@@ -85,7 +86,7 @@ namespace NotesLibrary.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(AddBookViewModel model)
+        public ActionResult Add(Models.AddBookViewModel model)
         {
             using (LibraryDBContext db = new LibraryDBContext())
             {
@@ -105,7 +106,7 @@ namespace NotesLibrary.Controllers
                     int MaxBookId = db.BookInfoes.Max(p => p.Id);
                     string userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
                     int MaxNotetId = db.NoteInfoes.Max(p => p.Id);
-                    db.NoteInfoes.Add(new NoteInfo
+                    db.NoteInfoes.Add(new Models.NoteInfo
                     {
                         BookId = MaxBookId + 1,
                         OwnerId = userId,
@@ -130,7 +131,7 @@ namespace NotesLibrary.Controllers
                     StreamReader file = new StreamReader(DividendPath + FileName, Encoding.GetEncoding("GB2312"));
                     while ((TextLine = file.ReadLine()) != null)
                     {
-                        var bookLine = new BookLine
+                        var bookLine = new Models.BookLine
                         {
                             ContentId = MaxContentId,
                             LineIndex = counter + 1,
@@ -139,9 +140,9 @@ namespace NotesLibrary.Controllers
                         db.Books.Add(bookLine);
                         counter++;
                     }
-                    BookInfo book;
+                    Models.BookInfo book;
                     if (model.IsPrivate)
-                        book = new BookInfo
+                        book = new Models.BookInfo
                         {
                             Name = model.Name,
                             ISBN = model.ISBN,
@@ -153,7 +154,7 @@ namespace NotesLibrary.Controllers
                             TotalLine = counter
                         };
                     else
-                        book = new BookInfo
+                        book = new Models.BookInfo
                         {
                             Name = model.Name,
                             ISBN = model.ISBN,

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ViewModel;
 
 namespace NotesLibrary.Controllers
 {
@@ -36,7 +37,7 @@ namespace NotesLibrary.Controllers
                 string rank = "0";
                 if (book.RankPeople != 0)
                     rank = (book.TotalRank * 10 / book.RankPeople / 10.0).ToString();
-                return View(new DetailBookViewModel
+                return View(new ViewModel.DetailBookViewModel
                 {
                     BookId = (int)BookId,
                     NoteId = NoteId,

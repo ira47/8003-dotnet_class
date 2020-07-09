@@ -1,0 +1,9 @@
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\ViewModel\obj\Debug\netstandard2.0\ViewModel.csprojAssemblyReference.cache
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\ViewModel\obj\Debug\netstandard2.0\ViewModel.AssemblyInfoInputs.cache
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\ViewModel\obj\Debug\netstandard2.0\ViewModel.AssemblyInfo.cs
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\ViewModel\obj\Debug\netstandard2.0\ViewModel.csproj.CoreCompileInputs.cache
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\ViewModel\bin\Debug\netstandard2.0\ViewModel.deps.json
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\ViewModel\bin\Debug\netstandard2.0\ViewModel.dll
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\ViewModel\bin\Debug\netstandard2.0\ViewModel.pdb
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\ViewModel\obj\Debug\netstandard2.0\ViewModel.dll
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\ViewModel\obj\Debug\netstandard2.0\ViewModel.pdb

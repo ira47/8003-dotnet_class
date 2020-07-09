@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using ViewModel;
 
 namespace NotesLibrary.Controllers
 {
@@ -23,19 +24,19 @@ namespace NotesLibrary.Controllers
                 string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 var user = db.Users.Find(UserId);
                 if (user == null)
-                    return View(new BasicBookViewModel { HasLogin = false });
+                    return View(new ViewModel.BasicBookViewModel { HasLogin = false });
                 string[] books = user.Books.Split(',');
                 string[] notes = user.Notes.Split(',');
-                var basicBooks = new List<BasicBookInfo>();
+                var basicBooks = new List<Models.BasicBookInfo>();
                 for (int i = 0; i < books.Length; i++)
                 {
                     int BookId = Int32.Parse(books[i]);
                     int NoteId = Int32.Parse(notes[i]);
-                    BookInfo book = db.BookInfoes.Find(BookId);
+                    Models.BookInfo book = db.BookInfoes.Find(BookId);
                     string rank = "0";
                     if (book.RankPeople != 0)
                         rank = (book.TotalRank * 10 / book.RankPeople / 10.0).ToString();
-                    basicBooks.Add(new BasicBookInfo
+                    basicBooks.Add(new Models.BasicBookInfo
                     {
                         BookId = BookId,
                         NoteId = NoteId,
@@ -44,10 +45,10 @@ namespace NotesLibrary.Controllers
                         ReadPeople = book.ReadPeople
                     });
                 }
-                return View(new BasicBookViewModel
+                return View(new ViewModel.BasicBookViewModel
                 {
                     HasLogin = true,
-                    BasicBooks = basicBooks,
+                    BasicBooks = (IEnumerable<ViewModel.BasicBookInfo>)basicBooks,
                     TotalBook = books.Length
                 });
             }
@@ -61,7 +62,7 @@ namespace NotesLibrary.Controllers
                 if (user != null)
                 {
                     int MaxNotetId = db.NoteInfoes.Max(p => p.Id);
-                    db.NoteInfoes.Add(new NoteInfo
+                    db.NoteInfoes.Add(new Models.NoteInfo
                     {
                         BookId = BookId,
                         OwnerId = UserId,

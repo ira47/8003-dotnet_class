@@ -1,0 +1,9 @@
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\MultiThread\bin\Debug\netstandard2.0\MultiThread.deps.json
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\MultiThread\bin\Debug\netstandard2.0\MultiThread.dll
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\MultiThread\bin\Debug\netstandard2.0\MultiThread.pdb
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\MultiThread\obj\Debug\netstandard2.0\MultiThread.csprojAssemblyReference.cache
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\MultiThread\obj\Debug\netstandard2.0\MultiThread.AssemblyInfoInputs.cache
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\MultiThread\obj\Debug\netstandard2.0\MultiThread.AssemblyInfo.cs
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\MultiThread\obj\Debug\netstandard2.0\MultiThread.csproj.CoreCompileInputs.cache
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\MultiThread\obj\Debug\netstandard2.0\MultiThread.dll
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\MultiThread\obj\Debug\netstandard2.0\MultiThread.pdb

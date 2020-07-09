@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "eWzNYBewRS+an4N/5wHSbwEwSwozFBcMaNnp1t5tDAS3fHUQJSPqvDswl2bBX9jaGWqsgujz7W8qRNyNviqsMA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\beibe\\8003-dotnet_class\\200-final_program\\NotesLibrary\\MultiThread\\MultiThread.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\beibe\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\beibe\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

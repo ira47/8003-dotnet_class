@@ -46,6 +46,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MultiThread">
+      <HintPath>..\MultiThread\bin\Debug\netstandard2.0\MultiThread.dll</HintPath>
+    </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
     </Reference>
@@ -199,6 +202,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReaderController.cs" />
     <Compile Include="Controllers\ShareBookController.cs" />
+    <Compile Include="Controllers\ThreadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -281,6 +285,7 @@
     <Content Include="Views\ShareBook\Index.cshtml" />
     <Content Include="Views\ShareBook\Create.cshtml" />
     <Content Include="Views\ShareBook\Share.cshtml" />
+    <Content Include="Views\Thread\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\DividendText\" />

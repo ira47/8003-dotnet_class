@@ -1,0 +1,15 @@
+﻿@model ViewModel.ThreadViewModel
+@{
+    ViewBag.Title = "多线程演示";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.ActionLink("开始执行多线程任务", "Start", null, new { @class = "btn btn-default btn-lg" })
+<br />
+@foreach (var message in Model.Messages)
+{
+    <h3>@Html.DisplayFor(m => message)</h3>
+}
+
+

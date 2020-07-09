@@ -1,0 +1,9 @@
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\Verification\bin\Debug\netstandard2.0\Verification.deps.json
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\Verification\bin\Debug\netstandard2.0\Verification.dll
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\Verification\bin\Debug\netstandard2.0\Verification.pdb
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\Verification\obj\Debug\netstandard2.0\Verification.csprojAssemblyReference.cache
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\Verification\obj\Debug\netstandard2.0\Verification.AssemblyInfoInputs.cache
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\Verification\obj\Debug\netstandard2.0\Verification.AssemblyInfo.cs
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\Verification\obj\Debug\netstandard2.0\Verification.csproj.CoreCompileInputs.cache
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\Verification\obj\Debug\netstandard2.0\Verification.dll
+C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\Verification\obj\Debug\netstandard2.0\Verification.pdb

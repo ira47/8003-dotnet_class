@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ViewModel;
+using Verification;
 
 namespace NotesLibrary.Controllers
 {
@@ -27,7 +28,7 @@ namespace NotesLibrary.Controllers
                 // var shareLines = db.Shares.Where(b => b.UserId == user.Id).ToList();
                 // var shareLines = from s in db.Shares where s.BookId == BookId && s.UserId == user.Id select s;
                 int shareCount = 0;
-                var shareInfoes = new List<Models.ShareInfo>();
+                var shareInfoes = new List<ViewModel.ShareInfo>();
                 foreach (var shareLine in shareLines)
                 {
                     shareCount++;
@@ -41,7 +42,7 @@ namespace NotesLibrary.Controllers
                         var implementUser = db.Users.Find(shareLine.ImplementId);
                         implementName = implementUser.UserName;
                     }
-                    shareInfoes.Add(new Models.ShareInfo
+                    shareInfoes.Add(new ViewModel.ShareInfo
                     {
                         Index = shareCount,
                         ShareLink = shareLink,
@@ -54,7 +55,7 @@ namespace NotesLibrary.Controllers
                     HasLogin = true,
                     HasBook = true,
                     BookName = db.BookInfoes.Find(BookId).Name,
-                    ShareInfoes = (IEnumerable<ViewModel.ShareInfo>)shareInfoes,
+                    ShareInfoes = shareInfoes,
                     BookId = BookId,
                     NoteId = NoteId
                 });
@@ -73,20 +74,14 @@ namespace NotesLibrary.Controllers
                 + "&UserId=" + UserId + "&VerifyCode=" + VerifyCode;
             return prefix + suffix;
         }
-        public string GenerateVerifyCode()
+        public string GenerateVerifyCode(int BookId, string UserId)
         {
-            using (LibraryDBContext db = new LibraryDBContext())
-            {
-                Random random = new Random();
-                string n = random.Next().ToString();
-                var shareLine = db.Shares.Find(n);
-                while (shareLine != null)
-                {
-                    n = random.Next().ToString();
-                    shareLine = db.Shares.Find(n);
-                }
-                return n;
-            }
+            string BookIdStr = BookId.ToString();
+            string rawText = BookIdStr + UserId + BookIdStr;
+            string verifyCode;
+            verifyCode = md5.GetVerifyCode(rawText);
+            // verifyCode = sha256.GetVerifyCode(rawText);
+            return verifyCode;
         }
         public ActionResult Create(int BookId, int NoteId)
         {
@@ -99,7 +94,7 @@ namespace NotesLibrary.Controllers
                 var noteInfo = db.NoteInfoes.Find(BookId, user.Id);
                 if (noteInfo == null || noteInfo.Id != NoteId)
                     return View(new ViewModel.ShareBookViewModel { HasLogin = true, HasBook = false });
-                string verifyCode = GenerateVerifyCode();
+                string verifyCode = GenerateVerifyCode(BookId, user.Id);
                 db.Shares.Add(new Models.ShareLine
                 {
                     VerifyCode = verifyCode,

@@ -108,6 +108,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Verification">
+      <HintPath>..\Verification\bin\Debug\netstandard2.0\Verification.dll</HintPath>
+    </Reference>
     <Reference Include="ViewModel">
       <HintPath>..\ViewModel\bin\Debug\netstandard2.0\ViewModel.dll</HintPath>
     </Reference>

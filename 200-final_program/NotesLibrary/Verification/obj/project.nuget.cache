@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "WspU1JhUCEqG9K4w9aEjzqzUAUyhs1E6Lf/gmgkUxig2UZe3y4n7Wy7APiOth3lQoUAmhTKp3OSYq8JtITaEfQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\beibe\\8003-dotnet_class\\200-final_program\\NotesLibrary\\Verification\\Verification.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\beibe\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\beibe\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -27,7 +27,7 @@ namespace NotesLibrary.Controllers
                     return View(new ViewModel.BasicBookViewModel { HasLogin = false });
                 string[] books = user.Books.Split(',');
                 string[] notes = user.Notes.Split(',');
-                var basicBooks = new List<Models.BasicBookInfo>();
+                var basicBooks = new List<ViewModel.BasicBookInfo>();
                 for (int i = 0; i < books.Length; i++)
                 {
                     int BookId = Int32.Parse(books[i]);
@@ -36,7 +36,7 @@ namespace NotesLibrary.Controllers
                     string rank = "0";
                     if (book.RankPeople != 0)
                         rank = (book.TotalRank * 10 / book.RankPeople / 10.0).ToString();
-                    basicBooks.Add(new Models.BasicBookInfo
+                    basicBooks.Add(new ViewModel.BasicBookInfo
                     {
                         BookId = BookId,
                         NoteId = NoteId,
@@ -48,7 +48,7 @@ namespace NotesLibrary.Controllers
                 return View(new ViewModel.BasicBookViewModel
                 {
                     HasLogin = true,
-                    BasicBooks = (IEnumerable<ViewModel.BasicBookInfo>)basicBooks,
+                    BasicBooks = basicBooks,
                     TotalBook = books.Length
                 });
             }

@@ -2,6 +2,7 @@
 using NotesLibrary.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -58,12 +59,15 @@ namespace NotesLibrary.Controllers
                         if (noteInfo != null)
                             NoteId = noteInfo.Id;
                     }
+                    string rank = "0";
+                    if (book.RankPeople != 0)
+                        rank = (book.TotalRank * 10 / book.RankPeople / 10.0).ToString();
                     basicBooks.Add(new BasicBookInfo
                     {
                         BookId = book.Id,
                         NoteId = NoteId,
                         BookName = book.Name,
-                        Rank = (book.TotalRank * 10 / book.RankPeople / 10.0).ToString(),
+                        Rank = rank,
                         ReadPeople = book.ReadPeople
                     });
                 }
@@ -98,16 +102,26 @@ namespace NotesLibrary.Controllers
                     outFile.Append(DividendPath + FileName);
                     DivideTextFile(inFile, outFile, 80);
 
-                    var book = new BookInfo
+                    int MaxBookId = db.BookInfoes.Max(p => p.Id);
+                    string userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                    int MaxNotetId = db.NoteInfoes.Max(p => p.Id);
+                    db.NoteInfoes.Add(new NoteInfo
                     {
-                        Name = model.Name,
-                        ISBN = model.ISBN,
-                        Author = model.Author,
-                        OwnerId = System.Web.HttpContext.Current.User.Identity.GetUserId(),
-                        Category = model.Category,
-                        Description = model.Description
-                    };
-                    db.BookInfoes.Add(book);
+                        BookId = MaxBookId + 1,
+                        OwnerId = userId,
+                        Id = MaxNotetId + 1
+                    });
+                    var user = db.Users.Find(userId);
+                    string bookIdStr = (MaxBookId + 1).ToString();
+                    string noteIdStr = (MaxNotetId + 1).ToString();
+                    if (user.Books != "")
+                    {
+                        user.Books += ",";
+                        user.Notes += ",";
+                    }
+                    user.Books += bookIdStr;
+                    user.Notes += noteIdStr;
+                    db.Users.AddOrUpdate(user);
                     db.SaveChanges();
 
                     int MaxContentId = db.BookInfoes.Max(p => p.Id);
@@ -125,7 +139,31 @@ namespace NotesLibrary.Controllers
                         db.Books.Add(bookLine);
                         counter++;
                     }
-
+                    BookInfo book;
+                    if (model.IsPrivate)
+                        book = new BookInfo
+                        {
+                            Name = model.Name,
+                            ISBN = model.ISBN,
+                            Author = model.Author,
+                            OwnerId = userId,
+                            Category = model.Category,
+                            Description = model.Description,
+                            ReadPeople = 1,
+                            TotalLine = counter
+                        };
+                    else
+                        book = new BookInfo
+                        {
+                            Name = model.Name,
+                            ISBN = model.ISBN,
+                            Author = model.Author,
+                            Category = model.Category,
+                            Description = model.Description,
+                            ReadPeople = 1,
+                            TotalLine = counter
+                        };
+                    db.BookInfoes.Add(book);
                     db.SaveChanges();
                     return RedirectToAction("Index", "Home");
                 }

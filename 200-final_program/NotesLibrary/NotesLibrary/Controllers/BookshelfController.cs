@@ -32,12 +32,15 @@ namespace NotesLibrary.Controllers
                     int BookId = Int32.Parse(books[i]);
                     int NoteId = Int32.Parse(notes[i]);
                     BookInfo book = db.BookInfoes.Find(BookId);
+                    string rank = "0";
+                    if (book.RankPeople != 0)
+                        rank = (book.TotalRank * 10 / book.RankPeople / 10.0).ToString();
                     basicBooks.Add(new BasicBookInfo
                     {
                         BookId = BookId,
                         NoteId = NoteId,
                         BookName = book.Name,
-                        Rank = (book.TotalRank * 10 / book.RankPeople / 10.0).ToString(),
+                        Rank = rank,
                         ReadPeople = book.ReadPeople
                     });
                 }
@@ -77,6 +80,10 @@ namespace NotesLibrary.Controllers
                     user.Books += bookIdStr;
                     user.Notes += noteIdStr;
                     db.Users.AddOrUpdate(user);
+
+                    var bookInfo = db.BookInfoes.Find(BookId);
+                    bookInfo.ReadPeople++;
+                    db.BookInfoes.AddOrUpdate(bookInfo);
                     db.SaveChanges();
                 }
                 return RedirectToAction("Index");

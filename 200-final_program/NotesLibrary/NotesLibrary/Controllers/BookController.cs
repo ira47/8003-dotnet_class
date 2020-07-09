@@ -33,8 +33,10 @@ namespace NotesLibrary.Controllers
                 var user = db.Users.Find(UserId);
                 if (user == null)
                     hasLogin = false;
-
-                    return View(new DetailBookViewModel
+                string rank = "0";
+                if (book.RankPeople != 0)
+                    rank = (book.TotalRank * 10 / book.RankPeople / 10.0).ToString();
+                return View(new DetailBookViewModel
                 {
                     BookId = (int)BookId,
                     NoteId = NoteId,
@@ -44,7 +46,7 @@ namespace NotesLibrary.Controllers
                     OwnerName = ownerName,
                     Category = book.Category,
                     Description = book.Description,
-                    Rank = (book.TotalRank * 10 / book.RankPeople / 10.0).ToString(),
+                    Rank = rank,
                     RankPeople = book.RankPeople,
                     TotalLine = book.TotalLine,
                     HasLogin = hasLogin

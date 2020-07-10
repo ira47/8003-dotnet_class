@@ -1,0 +1,35 @@
+// log4csATL.idl : log4csATL的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 产生类型库(log4csATL.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(11DA3A67-B60F-4784-A794-3D70BEE5D53E),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IhttpRequestLogger : IDispatch{
+	[id(1)] HRESULT serialize(BSTR method, BSTR uri);
+};
+[
+	uuid(F27856AE-8BBB-4779-9247-49CD3AB20DA7),
+	version(1.0),
+]
+library log4csATLLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(2306D767-4B82-47E0-AFB9-30703892EA84)		
+	]
+	coclass httpRequestLogger
+	{
+		[default] interface IhttpRequestLogger;
+	};
+};
+

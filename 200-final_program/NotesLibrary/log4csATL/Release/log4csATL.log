@@ -1,0 +1,9 @@
+﻿  dllmain.cpp
+  httpRequestLogger.cpp
+  log4csATL.cpp
+  正在生成代码...
+  log4csATL_i.c
+    正在创建库 C:\Projects\BookManage\DeviceManagement\Release\log4csATL.lib 和对象 C:\Projects\BookManage\DeviceManagement\Release\log4csATL.exp
+  log4csATL.vcxproj -> C:\Projects\BookManage\DeviceManagement\Release\log4csATL.dll
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppCommon.targets(1840,5): warning MSB3075: 命令“regsvr32 /s "C:\Projects\BookManage\DeviceManagement\Release\log4csATL.dll"”已退出，代码为 5。请验证您是否拥有运行此命令的足够权限。
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppCommon.targets(1852,5): error MSB8011: 未能注册输出。请尝试启用“逐用户重定向”，或者使用提升的权限从命令提示符处注册该组件。

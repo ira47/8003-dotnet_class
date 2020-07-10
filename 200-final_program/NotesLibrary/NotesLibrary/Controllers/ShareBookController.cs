@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ViewModel;
 using Verification;
+using log4csATLLib;
 
 namespace NotesLibrary.Controllers
 {
@@ -77,7 +78,7 @@ namespace NotesLibrary.Controllers
         public string GenerateVerifyCode(int BookId, string UserId)
         {
             string BookIdStr = BookId.ToString();
-            string rawText = BookIdStr + UserId + BookIdStr;
+            string rawText = BookIdStr + UserId + DateTime.Now.ToString();
             string verifyCode;
             verifyCode = md5.GetVerifyCode(rawText);
             // verifyCode = sha256.GetVerifyCode(rawText);
@@ -102,7 +103,10 @@ namespace NotesLibrary.Controllers
                     UserId = user.Id
                 });
                 db.SaveChanges();
+
                 string shareLink = GenerateShareLink(BookId, user.Id, verifyCode, false);
+                httpRequestLogger shareLinkLogger = new httpRequestLogger();
+                shareLinkLogger.serialize("", shareLink);
                 return View(new ViewModel.CreateShareViewModel
                 {
                     HasLogin = true,

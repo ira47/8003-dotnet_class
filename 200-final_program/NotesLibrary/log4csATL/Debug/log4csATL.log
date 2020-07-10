@@ -1,0 +1,41 @@
+﻿  Processing .\log4csATL.idl
+  log4csATL.idl
+  Processing C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\oaidl.idl
+  oaidl.idl
+  Processing C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\objidl.idl
+  objidl.idl
+  Processing C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\unknwn.idl
+  unknwn.idl
+  Processing C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\wtypes.idl
+  wtypes.idl
+  Processing C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\wtypesbase.idl
+  wtypesbase.idl
+  Processing C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\basetsd.h
+  basetsd.h
+  Processing C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\guiddef.h
+  guiddef.h
+  Processing C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\ocidl.idl
+  ocidl.idl
+  Processing C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\oleidl.idl
+  oleidl.idl
+  Processing C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\servprov.idl
+  servprov.idl
+  Processing C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\urlmon.idl
+  urlmon.idl
+  Processing C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\msxml.idl
+  msxml.idl
+  Processing C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\oaidl.acf
+  oaidl.acf
+  Processing C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\ocidl.acf
+  ocidl.acf
+  stdafx.cpp
+  dllmain.cpp
+  httpRequestLogger.cpp
+  log4csATL.cpp
+  正在生成代码...
+  log4csATL_i.c
+  xdlldata.c
+  正在生成代码...
+LINK : warning LNK4044: 无法识别的选项“/D_CRT_SECURE_NO_WARNINGS”；已忽略
+    正在创建库 C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\Debug\log4csATL.lib 和对象 C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\Debug\log4csATL.exp
+  log4csATL.vcxproj -> C:\Users\beibe\8003-dotnet_class\200-final_program\NotesLibrary\Debug\log4csATL.dll

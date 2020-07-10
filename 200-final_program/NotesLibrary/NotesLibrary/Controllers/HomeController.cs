@@ -125,25 +125,28 @@ namespace NotesLibrary.Controllers
                     db.Users.AddOrUpdate(user);
                     db.SaveChanges();
 
-                    int MaxContentId = db.BookInfoes.Max(p => p.Id);
                     int counter = 0;
                     string TextLine;
                     StreamReader file = new StreamReader(DividendPath + FileName, Encoding.GetEncoding("GB2312"));
+
+                    List<Models.BookLine> bookLines = new List<Models.BookLine>();
                     while ((TextLine = file.ReadLine()) != null)
                     {
-                        var bookLine = new Models.BookLine
-                        {
-                            ContentId = MaxContentId,
-                            LineIndex = counter + 1,
-                            Line = TextLine
-                        };
-                        db.Books.Add(bookLine);
                         counter++;
+                        bookLines.Add(new Models.BookLine
+                        {
+                            ContentId = MaxBookId + 1,
+                            LineIndex = counter,
+                            Line = TextLine
+                        });
                     }
+                    db.Books.AddRange(bookLines);
+
                     Models.BookInfo book;
                     if (model.IsPrivate)
                         book = new Models.BookInfo
                         {
+                            Id = MaxBookId + 1,
                             Name = model.Name,
                             ISBN = model.ISBN,
                             Author = model.Author,
@@ -156,6 +159,7 @@ namespace NotesLibrary.Controllers
                     else
                         book = new Models.BookInfo
                         {
+                            Id = MaxBookId + 1,
                             Name = model.Name,
                             ISBN = model.ISBN,
                             Author = model.Author,

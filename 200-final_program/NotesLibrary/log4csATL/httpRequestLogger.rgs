@@ -1,0 +1,16 @@
+HKCR
+{
+	NoRemove CLSID
+	{
+		ForceRemove {2306D767-4B82-47E0-AFB9-30703892EA84} = s 'httpRequestLogger Class'
+		{
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			TypeLib = s '{F27856AE-8BBB-4779-9247-49CD3AB20DA7}'
+			Version = s '1.0'
+		}
+	}
+}
